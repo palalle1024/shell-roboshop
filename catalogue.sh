@@ -52,12 +52,14 @@ else
     echo -e "system user roboshop already created  ... $Y SKIPPING $N"
 fi
 
+
 mkdir -p /app 
 VALIDATE $? "Creating app Directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>LOG_FILE
 VALIDATE $? "Downloading Catalogue"
 
+rm -rf /app/*
 cd /app &>>LOG_FILE
 unzip /tmp/catalogue.zip &>>LOG_FILE
 VALIDATE $? "Unzipping catalogue"
