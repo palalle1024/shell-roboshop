@@ -73,7 +73,7 @@ VALIDATE $? "Starting payment"
 
 
 END_TIME=$(date +%s) 
-TOTAL_TIME=$( ( $END_TIME - $START_TIME ) )
+TOTAL_TIME=$( $END_TIME - $START_TIME )
 
 echo -e "Script exection completed successfully,  $Y time taken: $TOTAL_TIME seconds $N" | tee -a $LOG_FILE
 
