@@ -84,9 +84,9 @@ VALIDATE $? "Installing mysql client"
 mysql -h mysql.palalle.site -u root -p$MYSQL_ROOT_PASSWORD -e 'use cities' &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
-    mysql -h mysql.daws84s.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/schema.sql &>>$LOG_FILE
-    mysql -h mysql.daws84s.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/app-user.sql  &>>$LOG_FILE
-    mysql -h mysql.daws84s.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/master-data.sql &>>$LOG_FILE
+    mysql -h palalle.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/schema.sql &>>$LOG_FILE
+    mysql -h palalle.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/app-user.sql  &>>$LOG_FILE
+    mysql -h palalle.site -uroot -p$MYSQL_ROOT_PASSWORD < /app/db/master-data.sql &>>$LOG_FILE
     VALIDATE $? "Loading data into MySQL"
 else
     echo -e "Data is already loaded into Mysql ...$Y SKIPPING $N"
@@ -96,7 +96,7 @@ systemctl restart shipping &>>$LOG_FILE
 VALIDATE $? "Restarting shipping"
 
 END_TIME=$(date +%s) 
-TOTAL_TIME=$( ( $END_TIME - $START_TIME ) )
+TOTAL_TIME=$(( $END_TIME - $START_TIME ))
 
 echo -e "Script exection completed successfully,  $Y time taken: $TOTAL_TIME seconds $N" | tee -a $LOG_FILE
 
